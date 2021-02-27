@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Choose Course</title>
+        
+    </h:head>
+    <h:body>
+        <h1>Select Courses that you want to learn</h1>
+        <h:dataTable border="1" value="#{registration.coursesList}" var="c">
+            <h:column>
+                <f:facet name="header">
+                    Code
+                </f:facet>
+                <h:outputLabel value="#{c.code}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Name
+                </f:facet>
+                <h:outputLabel value="#{c.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Credits
+                </f:facet>
+                <h:outputLabel value="#{c.credits}">
+                    <!--<f:attribute name="credits"/>-->
+                </h:outputLabel>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Course Fee
+                </f:facet>
+                <h:outputLabel value="#{c.courseFee}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    Actions
+                </f:facet>
+                <h:form prependId="false">
+                    <h:commandButton type="submit" id="Add"  value="Add" action="#{registration.add(c)}"/>
+                    <h:commandButton value="Remove" action="#{registration.remove(c)}"/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <h2>Your current selection</h2>
+        <h3>Number of Courses: <h:outputLabel value="#{registration.student.numberOfCourses}"/></h3>
+        <h3>Total Credits: <h:outputLabel value="#{registration.student.numberOfCourses}"/></h3>
+        <h3>Total Fee: <h:outputLabel id="totalpayment" value="#{registration.student.totalPayment}"/></h3>
+        <h:form prependId="false">
+            <h:commandButton id="RegisterNow" type="submit" value="Register Now" action="#{registration.registerNow()}"/>
+        </h:form>
+    </h:body>
+</html>
+

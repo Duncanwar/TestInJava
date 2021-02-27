@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <div class="container my-5">
+            <h3>Details of selected course</h3>
+        <h:dataTable value="#{CourseReg.getRegisteredCourse()}" var="course" class="table table-striped ">
+            <h:column>
+                <f:facet name="header">Code</f:facet>
+                <h:outputText value="${course.code}"></h:outputText>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="${course.name}"></h:outputText>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Credits</f:facet>
+                <h:outputText value="${course.credits}"></h:outputText>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Course Fee</f:facet>
+                <h:outputText value="${course.fees}"></h:outputText>
+            </h:column>
+           
+        </h:dataTable>
+        <table class="table table-dark">
+        <tr>
+            <td style="width:680px;">Total credits</td>
+            <td style="width:180px;"><h:outputText value="#{CourseReg.totalCredits()}"></h:outputText></td>
+        <td><h:outputText value="#{CourseReg.total}"></h:outputText></td>
+        </tr>
+        </table>
+        <div class="offset-md-5">
+         <h:link class="badge badge-success" value="Complete Registration" outcome="/complete.xhtml" />
+         <h:link class="badge badge-primary ml-5"  value="Go back" outcome="/courseList.xhtml" />
+        </div>
+        </div>
+    </h:body>
+</html>
+
