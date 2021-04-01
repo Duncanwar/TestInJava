@@ -5,16 +5,13 @@
  */
 package reg.backend.domain;
 
-import reg.backend.helpers.LocalDateConverter;
 import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,24 +22,26 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
- *
  * 
  */
 @Entity
-public class Student implements Serializable {
+public class Student implements Serializable  {
     @Id
     private String studentId;
     private String name;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    //@Convert(converter = LocalDateConverter.class)
+    private String username;
+    private String password;
     private Date dob;
     
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "REGISTRATION",joinColumns = {@JoinColumn(name = "STUDENT_ID")}
             ,inverseJoinColumns = @JoinColumn(name = "COURSE_ID"))
     List<Course> courses = new ArrayList<>();
-
+    
+    private LoginStatus loginStatus;
+    
     public Student() {
     }
     
@@ -97,7 +96,6 @@ public class Student implements Serializable {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-
     
     public void registerCourse(Course course){
         courses.add(course);
@@ -105,6 +103,32 @@ public class Student implements Serializable {
     public void removeCourse(Course course){
         courses.remove(course);
     }
+
+    public LoginStatus getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(LoginStatus loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
     public boolean isExist(String code){
         boolean isexist=false;
         for (Course c : courses) {
@@ -131,7 +155,7 @@ public class Student implements Serializable {
         DecimalFormat formatter = new DecimalFormat("###,###,###.##Frw");
         return formatter.format(fee);
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

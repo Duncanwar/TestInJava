@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Add Course
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Name:" for="name" />
+                    <h:inputText id="name" value="#{course.course.name}" title="Name" />
+                    <h:outputLabel value="Code:" for="code" />
+                    <h:inputText id="code" value="#{course.course.code}" title="Code" />
+                    <h:outputLabel value="Credits:" for="credits" />
+                    <h:inputText id="credits" value="#{course.course.credits}" title="Credits" />
+                    <h:outputLabel value="CourseFee:" for="courseFee" />
+                    <h:inputText id="courseFee" value="#{course.course.courseFee}" title="CourseFee" />
+                    <h:commandButton value="Register" type="submit" action="#{course.RegisterCourse()}" />
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+        <h3>Display Courses</h3>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <h:dataTable value="#{course.findAll()}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Code"/>
+                        </f:facet>
+                        <h:outputText value="#{item.code}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Credits"/>
+                        </f:facet>
+                        <h:outputText value="#{item.credits}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="CourseFee"/>
+                        </f:facet>
+                        <h:outputText value="#{item.courseFee}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

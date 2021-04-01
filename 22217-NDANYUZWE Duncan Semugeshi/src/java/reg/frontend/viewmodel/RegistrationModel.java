@@ -16,7 +16,6 @@ import reg.backend.domain.Course;
 import reg.backend.domain.Student;
 
 /**
- *
  * 
  */
 @ManagedBean(name = "registration")
@@ -38,7 +37,6 @@ public class RegistrationModel {
         return coursesList;
     }
 
-   
     public Student getStudent() {
         return student;
     }
@@ -46,7 +44,6 @@ public class RegistrationModel {
     public void setStudent(Student student) {
         this.student = student;
     }
-    
     
     public String next(){
         return "chooseCourses";
@@ -68,6 +65,18 @@ public class RegistrationModel {
     
     public String viewDetails(){
         return "viewDetails";
+    }
+    
+    public String login(){
+        
+      String navResult = "";
+        System.out.println("Entered Username is= "+ student.getName() + ", password= "+ student.getPassword());
+        if(student.getUsername().equals("me") && student.getPassword().equals("123")){
+            navResult= "chooseCourses";
+        }else{
+            navResult = "index";
+        }
+        return navResult;
     }
     
     public String  registerNow(){
