@@ -59,4 +59,8 @@ public class GeneralDao<K> {
         closeSession();
         return obj;
     }
+    public K findByName(String name){
+        K item = (K) createSession().get(type.getName(), name);
+     return item;
+    }
 }

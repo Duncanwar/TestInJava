@@ -24,7 +24,7 @@ public class RegistrationModel {
     private Student student = new Student();
     private List<Course> coursesList;
     private List<Course> registeredCourse = new ArrayList<>();
-
+    private GeneralDao<Student> studDao = new GeneralDao<>(Student.class);
     public RegistrationModel() {
         GeneralDao<Course> courseDao = new GeneralDao<>(Course.class);
         coursesList = courseDao.findAll();
@@ -46,7 +46,9 @@ public class RegistrationModel {
     }
     
     public String next(){
-        return "chooseCourses";
+         
+          studDao.save(student);  
+        return "LoginPage";
     }
     
     public void add(Course selectedCourse){
@@ -68,10 +70,10 @@ public class RegistrationModel {
     }
     
     public String login(){
-        
       String navResult = "";
-        System.out.println("Entered Username is= "+ student.getName() + ", password= "+ student.getPassword());
-        if(student.getUsername().equals("me") && student.getPassword().equals("123")){
+        Student s = studDao.findByName(student.getUsername());
+        System.err.println(student.getUsername());
+        if(s.getPassword().equals("123")){
             navResult= "chooseCourses";
         }else{
             navResult = "index";
@@ -81,7 +83,7 @@ public class RegistrationModel {
     
     public String  registerNow(){
         try{
-            GeneralDao<Student> studDao = new GeneralDao<>(Student.class);
+           
             studDao.save(student);  
             FacesContext.getCurrentInstance().addMessage(null, 
                     new FacesMessage("Dear "+student.getName()+" thank you for registering."
