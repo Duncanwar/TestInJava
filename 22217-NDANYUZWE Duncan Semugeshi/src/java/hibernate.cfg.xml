@@ -46,8 +46,8 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/testing</property>
     <property name="hibernate.connection.username">duncan</property>
     <property name="hibernate.connection.password">1212</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping class="reg.backend.domain.Course"/>
-    <mapping class="reg.backend.domain.Student"/>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
+    <mapping class="reg.backend.domain.Books"/>
+    <mapping class="reg.backend.domain.Customer"/>
   </session-factory>
 </hibernate-configuration>

@@ -20,13 +20,13 @@
                 <f:facet name="header">
                     Name
                 </f:facet>
-                <h:outputLabel value="#{c.name}"/>
+                <h:outputLabel value="#{c.title}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
                     Credits
                 </f:facet>
-                <h:outputLabel value="#{c.credits}">
+                <h:outputLabel value="#{c.pages}">
                     <!--<f:attribute name="credits"/>-->
                 </h:outputLabel>
             </h:column>
@@ -34,7 +34,7 @@
                 <f:facet name="header">
                     Course Fee
                 </f:facet>
-                <h:outputLabel value="#{c.courseFee}"/>
+                <h:outputLabel value="#{c.bookFee}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">
@@ -47,7 +47,7 @@
             </h:column>
         </h:dataTable>
         <h2>Your current selection</h2>
-        <h3>Number of Courses: <h:outputLabel value="#{registration.student.numberOfCourses}"/></h3>
+        <h3>Number of Pages: <h:outputLabel value="#{registration.student.numberOfPages}"/></h3>
         <h3>Total Credits: <h:outputLabel value="#{registration.student.numberOfCourses}"/></h3>
         <h3>Total Fee: <h:outputLabel id="totalpayment" value="#{registration.student.totalPayment}"/></h3>
         <h:form prependId="false">

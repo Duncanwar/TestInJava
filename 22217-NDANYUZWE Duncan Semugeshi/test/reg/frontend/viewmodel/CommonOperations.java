@@ -15,9 +15,9 @@ public class CommonOperations {
             .build();
             
     public static final Operation DELETE_COURSE= 
-            Operations.deleteAllFrom("course");
+            Operations.deleteAllFrom("books");
     public static final Operation DELETE_STUDENT =
-        Operations.deleteAllFrom("student");
+        Operations.deleteAllFrom("customer");
     public static final Operation DELETE_REGISTRATION =
         Operations.deleteAllFrom("registration");
     public static  Operation INSERT_STUDENT =

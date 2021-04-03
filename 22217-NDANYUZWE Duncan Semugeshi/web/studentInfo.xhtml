@@ -8,36 +8,23 @@
     </h:head>
     <h:body>
         <h1>Student Information</h1>
-        <h:form prependId="false">
-            <h:panelGrid columns="2">
-                <h:outputLabel value="Student ID"/>
-                <h:inputText  value="#{registration.student.studentId}">
-                    <f:attribute  value="id" name="id"/>
-                </h:inputText>
-                <h:outputLabel value="Names"/>
-                <h:inputText id="names" value="#{registration.student.name}">
-                 <f:attribute value="names" name="names"/>
-                </h:inputText>
-                <h:outputLabel value="username"/>
-                <h:inputText id="usernames" value="#{registration.student.username}">
-                 <f:attribute value="usernames" name="usernames"/>
-                </h:inputText>
-                <h:outputLabel value="password"/>
-                <h:inputText id="password" value="#{registration.student.password}">
-                 <f:attribute value="password" name="password"/>
-                </h:inputText>
-                <h:outputLabel value="Date of Birth"/>
-                <h:inputText id="dob" value="#{registration.student.dob}">
-                    <f:attribute value="date" name="date"/>
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText>
-                <h:outputLabel value="Gender"/>
-                <h:inputText id="gender" value="#{registration.student.gender}">
-                    <f:attribute value="gender" name="gender"/>
-                </h:inputText>
-                <h:commandButton type="submit" id="Next" value="Next" action="#{registration.next()}"/>
-            </h:panelGrid>
-        </h:form>
+        <f:view>
+
+
+            <h:form prependId="false">
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                  
+                    <h:outputLabel value="Name:" for="name" />
+                    <h:inputText id="name" value="#{registration.student.name}" title="Name" />
+                    <h:outputLabel value="Gender:" for="gender" />
+                    <h:inputText id="gender" value="#{registration.student.gender}" title="Gender" />
+                  
+                 <h:commandButton type="submit" id="Next" value="Next" action="#{registration.next()}"/>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
     </h:body>
 </html>
 

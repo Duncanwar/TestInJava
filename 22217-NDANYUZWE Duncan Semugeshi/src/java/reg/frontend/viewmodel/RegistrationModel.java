@@ -12,8 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import reg.backend.dao.GeneralDao;
-import reg.backend.domain.Course;
-import reg.backend.domain.Student;
+import reg.backend.domain.Books;
+import reg.backend.domain.Customer;
 
 /**
  * 
@@ -21,43 +21,42 @@ import reg.backend.domain.Student;
 @ManagedBean(name = "registration")
 @SessionScoped
 public class RegistrationModel {
-    private Student student = new Student();
-    private List<Course> coursesList;
-    private List<Course> registeredCourse = new ArrayList<>();
-    private GeneralDao<Student> studDao = new GeneralDao<>(Student.class);
+    private Customer customer = new Customer();
+    private Books book = new Books();
+    private List<Books> coursesList;
+    private List<Books> registeredCourse = new ArrayList<>();
+    private GeneralDao<Customer> studDao = new GeneralDao<>(Customer.class);
     public RegistrationModel() {
-        GeneralDao<Course> courseDao = new GeneralDao<>(Course.class);
+        GeneralDao<Books> courseDao = new GeneralDao<>(Books.class);
         coursesList = courseDao.findAll();
     }
     
     public void setCoursesList(){
         
     }
-    public List<Course> getCoursesList() {
+    public List<Books> getCoursesList() {
         return coursesList;
     }
 
-    public Student getStudent() {
-        return student;
+    public Customer getStudent() {
+        return customer;
     }
     
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(Customer customer) {
+        this.customer = customer;
     }
     
-    public String next(){
-         
-          studDao.save(student);  
-        return "LoginPage";
+    public String next(){  
+        return "chooseCourses";
     }
     
-    public void add(Course selectedCourse){
+    public void add(Books selectedCourse){
         
-        student.registerCourse(selectedCourse);
+        customer.registerCourse(selectedCourse);
     }
     
-    public void remove(Course selectedCourse){  
-        student.removeCourse(selectedCourse);
+    public void remove(Books selectedCourse){  
+        customer.removeCourse(selectedCourse);
         System.out.println("Remove action is fired");
     }
     
@@ -68,30 +67,30 @@ public class RegistrationModel {
     public String viewDetails(){
         return "viewDetails";
     }
-    
-    public String login(){
-      String navResult = "";
-        Student s = studDao.findByName(student.getUsername());
-        System.err.println(student.getUsername());
-        if(s.getPassword().equals("123")){
-            navResult= "chooseCourses";
-        }else{
-            navResult = "index";
-        }
-        return navResult;
-    }
+//    
+//    public String login(){
+//      String navResult = "";
+//        Customer s = studDao.findByName(student.getUsername());
+//        System.err.println(student.getUsername());
+//        if(s.getPassword().equals("123")){
+//            navResult= "chooseCourses";
+//        }else{
+//            navResult = "index";
+//        }
+//        return navResult;
+//    }
     
     public String  registerNow(){
         try{
            
-            studDao.save(student);  
+            studDao.save(customer);  
             FacesContext.getCurrentInstance().addMessage(null, 
-                    new FacesMessage("Dear "+student.getName()+" thank you for registering."
-                            + "You are requested to pay "+student.getTotalPayment()));
+                    new FacesMessage("Dear "+customer.getName()+" thank you for registering."
+                            + "You are requested to pay "+customer.getTotalPayment()));
             return "registrationFeedback";
         }catch(Exception ex){
             FacesContext.getCurrentInstance().addMessage(null, 
-                    new FacesMessage("Dear "+student.getName()+" your registration has failed."
+                    new FacesMessage("Dear "+customer.getName()+" your registration has failed."
                             + "Contract our help desk for support"));
             return "chooseCourses";
         }

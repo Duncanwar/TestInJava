@@ -9,7 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import reg.backend.dao.GeneralDao;
-import reg.backend.domain.Course;
+import reg.backend.domain.Books;
 
 /**
  *
@@ -18,23 +18,23 @@ import reg.backend.domain.Course;
 @ManagedBean(name = "course")
 @SessionScoped
 public class CourseManagmentModel {
-    private Course course = new Course();
-    private GeneralDao<Course> courseDao = new GeneralDao<>(Course.class);
-    private List<Course> coursesList;
+    private Books course = new Books();
+    private GeneralDao<Books> courseDao = new GeneralDao<>(Books.class);
+    private List<Books> coursesList;
     
     public CourseManagmentModel(){
         coursesList = courseDao.findAll();
     }
 
-    public Course getCourse() {
+    public Books getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(Books course) {
         this.course = course;
     }
     
-     public List<Course> findAll(){
+     public List<Books> findAll(){
         coursesList = courseDao.findAll();
         return coursesList;
     }
@@ -46,7 +46,5 @@ public class CourseManagmentModel {
             e.printStackTrace();
         }
     }
-    
-   
     
 }
