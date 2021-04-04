@@ -5,10 +5,10 @@
  */
 package reg.backend.dao;
 
-import reg.backend.helpers.HibernateUtil;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
+import reg.backend.helpers.HibernateUtil;
 
 /**
  *
